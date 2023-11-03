@@ -6,10 +6,38 @@
 <body>
     <h1>Life Scheduler</h1>
     
+    
     <label for="event">Event: </label>
     <input type="text" id="event" placeholder="Enter your event">
+    
     <label for="time">Time: </label>
-    <input type="text" id="time" placeholder="Enter the time">
+    <select id="time">
+        <option value="1:00 AM">1:00 AM</option>
+        <option value="2:00 AM">2:00 AM</option>
+        <option value="3:00 AM">3:00 AM</option>
+        <option value="4:00 AM">4:00 AM</option>
+        <option value="5:00 AM">5:00 AM</option>
+        <option value="6:00 AM">6:00 AM</option>
+        <option value="7:00 AM">7:00 AM</option>
+        <option value="8:00 AM">8:00 AM</option>
+        <option value="9:00 AM">9:00 AM</option>
+        <option value="10:00 AM">10:00 AM</option>
+        <option value="11:00 AM">11:00 AM</option>
+        <option value="12:00 AM">12:00 AM</option>
+        <option value="1:00 PM">1:00 PM</option>
+        <option value="2:00 PM">2:00 PM</option>
+        <option value="3:00 PM">3:00 PM</option>
+        <option value="4:00 PM">4:00 PM</option>
+        <option value="5:00 PM">5:00 PM</option>
+        <option value="6:00 PM">6:00 PM</option>
+        <option value="7:00 PM">7:00 PM</option>
+        <option value="8:00 PM">8:00 PM</option>
+        <option value="9:00 PM">9:00 PM</option>
+        <option value="10:00 PM">10:00 PM</option>
+        <option value="11:00 PM">11:00 PM</option>
+        <option value="12:00 PM">12:00 PM</option>
+    </select>
+    
     <button onclick="addEvent()">Add Event</button>
     
     <h2>Schedule</h2>
@@ -22,11 +50,11 @@
         // Function to add an event
         function addEvent() {
             var eventInput = document.getElementById("event");
-            var timeInput = document.getElementById("time");
+            var timeSelect = document.getElementById("time");
             var scheduleList = document.getElementById("scheduleList");
 
             var event = eventInput.value;
-            var time = timeInput.value;
+            var time = timeSelect.value;
 
             if (event && time) {
                 // Create a new event object
@@ -43,7 +71,7 @@
 
                 // Clear input fields
                 eventInput.value = "";
-                timeInput.value = "";
+                timeSelect.selectedIndex = 0; // Reset the dropdown to the first option
             }
         }
 
