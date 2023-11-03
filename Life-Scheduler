@@ -1,84 +1,99 @@
-<!-- ... Your existing HTML ... -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Life Scheduler</title>
+</head>
+<body>
+    <h1>Life Scheduler</h1>
+    
+    <label for="event">Event: </label>
+    <input type="text" id="event" placeholder="Enter your event">
+    <label for="time">Time: </label>
+    <input type="text" id="time" placeholder="Enter the time">
+    <button onclick="addEvent()">Add Event</button>
+    
+    <h2>Schedule</h2>
+    <ul id="scheduleList"></ul>
 
-<script>
-    // Create an array to store events
-    var events = [];
+    <script>
+        // Create an array to store events
+        var events = [];
 
-    // Function to add an event
-    function addEvent() {
-        var eventInput = document.getElementById("event");
-        var timeInput = document.getElementById("time");
-        var scheduleList = document.getElementById("scheduleList");
+        // Function to add an event
+        function addEvent() {
+            var eventInput = document.getElementById("event");
+            var timeInput = document.getElementById("time");
+            var scheduleList = document.getElementById("scheduleList");
 
-        var event = eventInput.value;
-        var time = timeInput.value;
+            var event = eventInput.value;
+            var time = timeInput.value;
 
-        if (event && time) {
-            // Create a new event object
-            var newEvent = {
-                time: time,
-                event: event,
-            };
+            if (event && time) {
+                // Create a new event object
+                var newEvent = {
+                    time: time,
+                    event: event,
+                };
 
-            // Add the event to the array
-            events.push(newEvent);
+                // Add the event to the array
+                events.push(newEvent);
 
-            // Display the event in the schedule
-            displayEvents();
+                // Display the event in the schedule
+                displayEvents();
 
-            // Clear input fields
-            eventInput.value = "";
-            timeInput.value = "";
+                // Clear input fields
+                eventInput.value = "";
+                timeInput.value = "";
+            }
         }
-    }
 
-    // Function to display events
-    function displayEvents() {
-        var scheduleList = document.getElementById("scheduleList");
-        scheduleList.innerHTML = ""; // Clear the list
+        // Function to display events
+        function displayEvents() {
+            var scheduleList = document.getElementById("scheduleList");
+            scheduleList.innerHTML = ""; // Clear the list
 
-        // Loop through the events and display them
-        events.forEach(function (event, index) {
-            var newItem = document.createElement("li");
-            newItem.textContent = event.time + " - " + event.event;
+            // Loop through the events and display them
+            events.forEach(function (event, index) {
+                var newItem = document.createElement("li");
+                newItem.textContent = event.time + " - " + event.event;
 
-            // Add buttons to edit and delete the event
-            var editButton = document.createElement("button");
-            editButton.textContent = "Edit";
-            editButton.addEventListener("click", function () {
-                editEvent(index);
+                // Add buttons to edit and delete the event
+                var editButton = document.createElement("button");
+                editButton.textContent = "Edit";
+                editButton.addEventListener("click", function () {
+                    editEvent(index);
+                });
+
+                var deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.addEventListener("click", function () {
+                    deleteEvent(index);
+                });
+
+                newItem.appendChild(editButton);
+                newItem.appendChild(deleteButton);
+
+                scheduleList.appendChild(newItem);
             });
-
-            var deleteButton = document.createElement("button");
-            deleteButton.textContent = "Delete";
-            deleteButton.addEventListener("click", function () {
-                deleteEvent(index);
-            });
-
-            newItem.appendChild(editButton);
-            newItem.appendChild(deleteButton);
-
-            scheduleList.appendChild(newItem);
-        });
-    }
-
-    // Function to edit an event
-    function editEvent(index) {
-        var updatedEvent = prompt("Edit the event:", events[index].event);
-        if (updatedEvent !== null) {
-            events[index].event = updatedEvent;
-            displayEvents();
         }
-    }
 
-    // Function to delete an event
-    function deleteEvent(index) {
-        var confirmDelete = confirm("Delete this event?");
-        if (confirmDelete) {
-            events.splice(index, 1);
-            displayEvents();
+        // Function to edit an event
+        function editEvent(index) {
+            var updatedEvent = prompt("Edit the event:", events[index].event);
+            if (updatedEvent !== null) {
+                events[index].event = updatedEvent;
+                displayEvents();
+            }
         }
-    }
-</script>
+
+        // Function to delete an event
+        function deleteEvent(index) {
+            var confirmDelete = confirm("Delete this event?");
+            if (confirmDelete) {
+                events.splice(index, 1);
+                displayEvents();
+            }
+        }
+    </script>
 </body>
 </html>
