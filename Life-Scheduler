@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Life Scheduler</title>
+</head>
+<body>
+    <h1>Life Scheduler</h1>
+    
+    <label for="event">Event: </label>
+    <input type="text" id="event" placeholder="Enter your event">
+    <label for="time">Time: </label>
+    <input type="text" id="time" placeholder="Enter the time">
+    <button onclick="addEvent()">Add Event</button>
+    
+    <h2>Schedule</h2>
+    <ul id="scheduleList"></ul>
+
+    <script>
+        function addEvent() {
+            var eventInput = document.getElementById("event");
+            var timeInput = document.getElementById("time");
+            var scheduleList = document.getElementById("scheduleList");
+
+            var event = eventInput.value;
+            var time = timeInput.value;
+
+            if (event && time) {
+                var newItem = document.createElement("li");
+                newItem.textContent = time + " - " + event;
+                scheduleList.appendChild(newItem);
+
+                eventInput.value = "";
+                timeInput.value = "";
+            }
+        }
+    </script>
+</body>
+</html>
